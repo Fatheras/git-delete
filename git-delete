@@ -7,12 +7,16 @@ var github = require('octonode');
 var path = require('path');
 var rl = require('readline-sync');
 
-var username, password;
+var username, password, client;
 var credsFile = path.join(__dirname, 'creds.file');
 
 function deleteRepo(repo) {
-    // Where the actual work gets done
+    // Load the credentials/client if not initialized
+    username || readCredentials();
+    client = client || github.client({ username: username, password: password });
     
+    // One-liner to delete the repo (where the actual work gets done)
+    client.repo(repo).destroy();
 }
 
 function inferOwner(repo) {
@@ -75,6 +79,7 @@ if (args.indexOf('--login') !== -1) {
     loginUser();
 }
 
+// TODO: Implement this in parallel for perf.
 args.forEach(function(repo) {
     if (repo.indexOf('/') === -1) // infer the owner
         repo = inferOwner(repo);
