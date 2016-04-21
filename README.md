@@ -12,10 +12,12 @@ Then clone the repo and add it to your PATH:
 cd /path/to/install/dir
 git clone git@github.com:jamesqo/git-delete.git
 cd git-delete
-# Windows
-@powershell "$path = [Environment]::GetEnvironmentVariable('PATH', 'User'); [Environment]::SetEnvironmentVariable('PATH', ""$path;$pwd"", 'User')"
-# Mac/Linux
+
+# Mac/Linux users
 pwd -P | xargs -i echo 'export PATH="$PATH:{}"' | tee -a ~/.profile
+
+# Windows users
+@powershell "$path = [Environment]::GetEnvironmentVariable('PATH', 'User'); [Environment]::SetEnvironmentVariable('PATH', ""$path;$pwd"", 'User')"
 ```
 
 ## License
