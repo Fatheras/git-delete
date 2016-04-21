@@ -1,17 +1,43 @@
 #!/usr/bin/env node
 
+'use strict';
+
+var fs = require('fs');
 var github = require('octonode');
+var path = require('path');
+var rl = require('readline-sync');
+
+var username, password;
+var credsFile = path.join(__dirname, 'creds.file');
 
 function deleteRepo(repo) {
+    // Where the actual work gets done
     
 }
 
 function inferOwner(repo) {
-    
+    username || readCredentials();
+    return [username, repo].join('/');
 }
 
 function loginUser() {
-    
+    console.log('Please enter your GitHub credentials.');
+    username = rl.question('Username: ');
+    password = rl.question('Password: ', { hideEchoBack: true }); // don't echo for password
+    saveCredentials(username, password);
+}
+
+function readCredentials() {
+    var contents = fs.readFileSync(credsFile, 'base64');
+    var lines = contents.split('\n');
+    username = contents[0];
+    password = contents[1];
+}
+
+function saveCredentials(name, pass) {
+    var contents = [name, pass].join('\n');
+    var base64 = new Buffer(contents).toString('base64');
+    fs.writeFileSync(credsFile, base64);
 }
 
 function showHelp() {
