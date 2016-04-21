@@ -9,6 +9,7 @@ First, make sure you have [Node.js](https://nodejs.org/en/download/package-manag
 Then clone the repo and add it to your PATH:
 
 ```bash
+cd /path/to/install/dir
 git clone git@github.com:jamesqo/git-delete.git
 cd git-delete
 # Windows
