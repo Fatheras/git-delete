@@ -4,21 +4,16 @@ A command-line tool for automatically deleting GitHub repos.
 
 ## Installation
 
-Prerequisites: [Node.js](https://nodejs.org/en/download/package-manager/), [git](https://git-scm.com/download)
+First, make sure you have [Node.js](https://nodejs.org/en/download/package-manager/) and [git](https://git-scm.com/download) installed.
 
-### Windows
-
-```cmd
-git clone git@github.com:jamesqo/git-delete.git
-cd git-delete
-@powershell "$path = [Environment]::GetEnvironmentVariable('PATH', 'User'); [Environment]::SetEnvironmentVariable('PATH', ""$path;$pwd"", 'User')"
-```
-
-### Mac/Linux
+Then clone the repo and add it to your PATH:
 
 ```bash
 git clone git@github.com:jamesqo/git-delete.git
 cd git-delete
+# Windows
+@powershell "$path = [Environment]::GetEnvironmentVariable('PATH', 'User'); [Environment]::SetEnvironmentVariable('PATH', ""$path;$pwd"", 'User')"
+# Mac/Linux
 pwd -P | xargs -i echo 'export PATH="$PATH:{}"' | tee -a ~/.profile
 ```
 
