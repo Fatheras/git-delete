@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+
+var github = require('octonode');
+var process = require('process');
+
+function deleteRepo(repo) {
+    
+}
+
+function inferOwner(repo) {
+    
+}
+
+function loginUser() {
+    
+}
+
+function showHelp() {
+    var lines = [
+        'git delete lets you delete GitHub repos from the command line.',
+        'Usage: git delete [--login] [repos]',
+        '',
+        '--login lets you enter your credentials for GitHub, so you can',
+        "write something like `git delete foobar` and it'll run as if you",
+        'had typed `git delete yourname/foobar`.',
+        '',
+        'The repos, of course, are a list of the repositories you want to delete.'
+    ];
+    
+    lines.forEach(function(line) {
+        console.log(line);
+    });
+}
+
+var args = process.argv.slice(2);
+
+if (args.indexOf('-?') !== -1 || args.indexOf('-h') !== -1 || args.indexOf('--help') !== -1) {
+    // display help and exit
+    showHelp();
+    process.exit(0);
+}
+
+if (args.indexOf('--login') !== -1) {
+    // have the user login before processing the repos
+    args = args.filter(function(arg) {
+        // remove all occurrences of --login
+        return arg !== '--login';
+    });
+    
+    loginUser();
+}
+
+args.forEach(function(repo) {
+    if (repo.indexOf('/') === -1) // infer the owner
+        repo = inferOwner(repo);
+    
+    deleteRepo(repo);
+});
