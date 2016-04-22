@@ -8,13 +8,15 @@ var rl = require('readline-sync');
 var username, password, client;
 var credsFile = path.join(__dirname, 'creds.file');
 
-function deleteRepo(repo) {
+function deleteRepo(repo, callback) {
+    callback = callback || function() {};
+    
     // Load the credentials/client if not initialized
     username || readCredentials();
     client = client || github.client({ username: username, password: password });
     
     // One-liner to delete the repo (where the actual work gets done)
-    client.repo(repo).destroy();
+    client.repo(repo).destroy(callback);
 }
 
 function inferOwner(repo) {
@@ -83,5 +85,5 @@ args.forEach(function(repo) {
     if (repo.indexOf('/') === -1) // infer the owner
         repo = inferOwner(repo);
     
-    deleteRepo(repo);
+    deleteRepo(repo, console.error);
 });
