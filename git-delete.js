@@ -35,8 +35,8 @@ function readCredentials() {
     var contents = fs.readFileSync(credsFile, 'utf8');
     contents = new Buffer(contents, 'base64').toString(); // base64 -> utf8
     var lines = contents.split('\n');
-    username = contents[0];
-    password = contents[1];
+    username = lines[0];
+    password = lines[1];
 }
 
 function saveCredentials(name, pass) {
