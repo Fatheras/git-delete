@@ -30,7 +30,8 @@ function loginUser() {
 }
 
 function readCredentials() {
-    var contents = fs.readFileSync(credsFile, 'base64');
+    var buffer = fs.readFileSync(credsFile);
+    var contents = new Buffer(buffer, 'base64').toString();
     var lines = contents.split('\n');
     username = contents[0];
     password = contents[1];
