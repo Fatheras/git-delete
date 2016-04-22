@@ -30,8 +30,8 @@ function loginUser() {
 }
 
 function readCredentials() {
-    var buffer = fs.readFileSync(credsFile);
-    var contents = new Buffer(buffer, 'base64').toString();
+    var contents = fs.readFileSync(credsFile).toString();
+    contents = new Buffer(contents, 'base64').toString(); // base64 -> utf8
     var lines = contents.split('\n');
     username = contents[0];
     password = contents[1];
@@ -39,7 +39,7 @@ function readCredentials() {
 
 function saveCredentials(name, pass) {
     var contents = [name, pass].join('\n');
-    var base64 = new Buffer(contents).toString('base64');
+    var base64 = new Buffer(contents).toString('base64'); // utf8 -> base64
     fs.writeFileSync(credsFile, base64);
 }
 
