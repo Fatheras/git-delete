@@ -85,5 +85,8 @@ args.forEach(function(repo) {
     if (repo.indexOf('/') === -1) // infer the owner
         repo = inferOwner(repo);
     
-    deleteRepo(repo, console.error);
+    deleteRepo(repo, function(error) {
+        if (error)
+            console.error(error);
+    });
 });
