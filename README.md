@@ -17,8 +17,9 @@ npm install octonode readline-sync
 # Mac/Linux users
 pwd -P | xargs -i echo 'export PATH="$PATH:{}"' | tee -a ~/.profile
 
-# Windows users
-@powershell "$path = [Environment]::GetEnvironmentVariable('PATH', 'User'); [Environment]::SetEnvironmentVariable('PATH', ""$path;$pwd"", 'User')"
+# Windows users (from PowerShell)
+$path = [Environment]::GetEnvironmentVariable('PATH', 'User')
+[Environment]::SetEnvironmentVariable('PATH', "$path;$pwd", 'User')
 ```
 
 ## License
