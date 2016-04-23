@@ -22,6 +22,16 @@ $path = [Environment]::GetEnvironmentVariable('PATH', 'User')
 [Environment]::SetEnvironmentVariable('PATH', "$path;$pwd", 'User')
 ```
 
+## Usage
+
+```
+git delete [--login] [repos]
+```
+
+- `--login` lets you login and enter your credentials, which are stored in a base64-encoded file at the script's root.
+
+- `repos` is a list of the repos you'd like to delete. For example, if your GitHub username was `little` and you want to delete `little/star`, you can either type in `git delete star` or `git delete little/star`.
+
 ## License
 
 [MIT](LICENSE)
