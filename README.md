@@ -32,6 +32,11 @@ git delete [--login] [repos]
 
 - `repos` is a list of the repos you'd like to delete. For example, if your GitHub username was `little` and you want to delete `little/star`, you can either type in `git delete star` or `git delete little/star`.
 
+## Known issues
+
+- Need a more secure way to store the username/password
+- `git delete --help` doesn't work, but `git-delete --help` does- something about a missing manpage
+
 ## License
 
 [MIT](LICENSE)
